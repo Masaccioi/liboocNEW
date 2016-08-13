@@ -1,0 +1,93 @@
+
+  *{
+    font-family: 'Open Sans', sans-serif;
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+  }
+  a:hover{
+    text-decoration: none;
+  }
+  ul li{
+    list-style: none;
+  }
+ /* 颜色*/
+  .bg{
+    background-color:#fff;
+  }
+  .btn-bg{}
+  .btn-color{}
+  .btn-hover{}
+  .content{
+    width: 63%;
+    margin:0 auto;
+    margin-top:8%;
+  }
+  .header{
+    text-align: center;
+    margin-bottom: 4em;
+  }
+  .title{
+    font-family: 'Dancing Script', sans-serif;
+    font-size: 7em;
+    color:#86cd50;
+  }
+  .help{   margin-top: -5em;}
+ .search{
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 2em;
+  }
+
+.searchField{
+	width: 91%;
+	height: 4em;
+	line-height: 4em;
+	padding-left: 2em;
+	border:1px solid #ccc;
+ }
+ .searchBtn{
+ 	float: right;
+    border: none;
+    background-color: #86cd50;
+ }
+ .searchicon{
+ 	padding:0.5em 0.6em;
+ 	font-weight: 400;
+ }
+ .searchBtn:before,.searchBtn:after{
+ 	background-color: #86cd50; 
+ }
+.searchBtn:hover,.searchicon:hover{
+  background-color:#05a24d;
+  color: #fff;
+}
+.bookRow{
+  background-color: #f6f8f8;
+    margin: 0.5em 0em;
+    padding: 1.6em 1.6em 1.2em 5em;
+    font-size: 1.1em;
+    color: #414a4e;
+}
+.bookRow:hover{
+  border-left: 4px solid #95d669;
+}
+ ul li:hover h1, ul li:hover span {
+        color: #95d669; 
+ }
+.bookId{
+  position: absolute;
+    left: -1.6em;
+    top: 0.7em;
+    font-size: 1.4em;
+    color: #27b1b5;
+}
+.bookTitle{
+  font-size: 1.4em;
+    font-weight: bolder;
+    color: #27b1b5;
+}
+.buyUrl:hover{
+  color: #95d669;
+  cursor: pointer;
+}

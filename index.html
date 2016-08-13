@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Libook--the largest ebook library</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Dancing+Script' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body class="bg container-fluid">
+	<div class="content" ng-app="WikiApp" ng-controller="MainCtrl">
+		<div class="header">
+			<h1 class="title">Libook</h1>
+			<p class="text-muted fz-me help">The largest ebook library.</p>
+			<form ng-submit='search()'>
+				<div class="search">
+					<input type="text" class="form-control searchField" placeholder="please input">  
+					<button type="submit" class="btn searchBtn">
+						<i class="fa fa-2x fa-search searchicon"></i>
+					</button>
+				</div>
+			</form>
+		</div>
+		<ul class="listView">
+			<a ng-href='{{result.page}}' target='_blank' ng-repeat='result in results'>
+			<li class="bookRow">
+				<div class="row">
+					<div class="col-md-12">
+						<span class="bookId">#{{result.id}}</span>
+						<h1 class="bookTitle">{{result.title}}</h1>
+						<p class="bookAuthor">{{result.author}}</p>
+						<p class="buyUrl">Buy</p>
+					</div>
+				</div>
+			</li>
+			</a>
+		</ul>
+	</div>
+	<<script type="text/javascript" src="js/angular.min.js"></script>
+  <script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
+   <script type="text/javascript" src="js/angular-animate.min.js"></script>
+   <script type="text/javascript">
+    var app = angular.module('WikiApp', ['ngAnimate']);
+app.controller('MainCtrl', function($scope, $http, $timeout) {
+  var input = $('input');
+  
+  $scope.results = [];
+  $scope.search = function() {
+    $scope.results = [];
+    var title = input.val();
+    var api = 'http://www.libooc.com/libooc/search/default?search=';
+    var cb = '&page=1&pagesize=100';
+    var page = 'http://www.libooc.com/libooc/ebook/detail?ebid=';
+    
+
+    $http.get(api + title + cb).success(function(data) {
+      var results=data.indexs;
+      console.log(results);
+      var i=1;
+      angular.forEach(results,function(v,k){
+        $scope.results.push({
+          id:i++,
+          title:v.title,
+          author:v.author,
+          buy:"Buy",
+          page:page+v.e_id
+        })
+      })
+    });
+  }
+});
+  </script>
+</body>
+</html>

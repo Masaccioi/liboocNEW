@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Libook</title>
+	<meta charset="utf-8">
+	 <link href='https://fonts.googleapis.com/css?family=Dancing+Script' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<style type="text/css">
+		.container{
+			width: 80%;
+			background-color: #f6f8f8;
+			margin: 0 auto;
+            height: 600px;
+            position: absolute;
+            left: 10%; 
+    		top: 7em;
+    		padding: 1em 1em;
+		    font-size: 1.4em;
+		    font-family: 'Open Sans', sans-serif;
+		}
+		.title{
+			position: absolute;
+			top: -0.6em;
+			left: 40%;
+		    color: #fff;
+		    z-index: 100;
+		}
+        .bookImg{
+        	padding: 0.4em 1em 0em 0em;
+        	border-right: 2px solid #86cd50;
+        }
+        .bookDown{
+        	background-color: #86cd50;
+        	border: none;
+        	margin: 1.8em 0em 1em 0em;
+        	padding: 0.2em;
+        }
+        .bookContent{
+       	 	padding: 0em 1em 1em 1.5em;
+       	 	line-height: 2em;
+        }
+        .bookTitle{
+        	font-size: 1.8em;
+    		line-height: 2em;
+        	color: #86cd50;
+        }
+	</style>
+</head>
+<body>
+	<div  class="">
+		<a href="http://www.libooc.com/jfinal_demo/libook/index.html"><h1 class="title">Libook</h1></a>
+		<img src="images/bg.jpg"  style="width: 100%;opacity: 0.7;">	
+		<div class="container">
+	      	 <ul id="list">
+	         </ul>
+        </div>
+    </div>  
+     <script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
+	<script type="text/javascript">
+
+      $(function () {  
+         var url = window.location.href;
+         $.ajax({  
+             url: url,  
+             type: 'GET',  
+             dataType: 'json',  
+             timeout: 1000,  
+             cache: false,  
+             beforeSend: LoadFunction, //加载执行方法    
+             error: erryFunction,  //错误执行方法    
+             success: succFunction //成功执行方法    
+         })  
+         function LoadFunction() {  
+             $("#list").html('加载中...');  
+         }  
+         function erryFunction() {  
+             alert("error");  
+         }  
+         function succFunction(result) {  
+             $("#list").html('');  
+             var json = eval(result); //数组  
+             $.each(json, function (index, item) {  
+                 //循环获取数据    
+                 var title=json[index].title;
+                 var author = json[index].author;  
+                 var page=json[index].page;
+                 var size=json[index].size;
+                 var img=json[index].imgurl;
+                 var language=json[index].language;
+                 var publisher=json[index].publisher;
+                 var topic=json[index].topic;
+                 var extension=json[index].extension;
+                 var edition=json[index].edition;
+                 var year=json[index].year;
+                 var volume=json[index].volume;
+                 $("#list").html($("#list").html() +"<div class='row'><div class='col-md-4'><img class='img-responsive bookImg' src='"+img+"'></div>"+
+                    "<div class='col-md-8 bookContent'><p class='bookTitle'>"+title+"</p><p>"+author+"</p><button class='bookDown btn btn-success'>Buy("+extension+")</button><p>Category:"+topic+"</p><p>language:"+language+"</p><p>edition:"+edition+"</p><p>year:"+year+"</p><p>page:"+page+"</p><p>size:"+size+"</p><p>publisher:"+publisher+"</p><p>volume:"+volume+"</p></div></div>");  
+             });  
+         }  
+     });  
+  </script>
+</body>
+</html>
