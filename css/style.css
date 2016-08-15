@@ -15,9 +15,6 @@
   .bg{
     background-color:#fff;
   }
-  .btn-bg{}
-  .btn-color{}
-  .btn-hover{}
   .content{
     width: 63%;
     margin:0 auto;
@@ -28,7 +25,7 @@
     margin-bottom: 4em;
   }
   .title{
-    font-family: 'Dancing Script', sans-serif;
+    font-family: 'Coiny', cursive, sans-serif;
     font-size: 7em;
     color:#86cd50;
   }
