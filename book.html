@@ -59,9 +59,12 @@
     </div>  
      <script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
 	<script type="text/javascript">
-
       $(function () {  
          var url = window.location.href;
+         var api="http://www.libooc.com/libooc/ebook/detail?ebid=";
+         var param=url.split('?');
+         param=param[1].split("=");
+         url=api+param[1];
          $.ajax({  
              url: url,  
              type: 'GET',  

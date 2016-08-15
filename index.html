@@ -14,7 +14,7 @@
 		<div class="header">
 			<h1 class="title">Libook</h1>
 			<p class="text-muted fz-me help">The largest ebook library.</p>
-			<form ng-submit='search()'>
+			<form >
 				<div class="search">
 					<input type="text" class="form-control searchField" placeholder="please input">  
 					<button type="submit" class="btn searchBtn">
@@ -23,54 +23,56 @@
 				</div>
 			</form>
 		</div>
-		<ul class="listView">
-			<a ng-href='{{result.page}}' target='_blank' ng-repeat='result in results'>
-			<li class="bookRow">
-				<div class="row">
-					<div class="col-md-12">
-						<span class="bookId">#{{result.id}}</span>
-						<h1 class="bookTitle">{{result.title}}</h1>
-						<p class="bookAuthor">{{result.author}}</p>
-						<p class="buyUrl">Buy</p>
-					</div>
-				</div>
-			</li>
-			</a>
+		<ul class="listView" id="list">
 		</ul>
 	</div>
-	<<script type="text/javascript" src="js/angular.min.js"></script>
   <script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
-   <script type="text/javascript" src="js/angular-animate.min.js"></script>
    <script type="text/javascript">
-    var app = angular.module('WikiApp', ['ngAnimate']);
-app.controller('MainCtrl', function($scope, $http, $timeout) {
-  var input = $('input');
-  
-  $scope.results = [];
-  $scope.search = function() {
-    $scope.results = [];
-    var title = input.val();
-    var api = 'http://www.libooc.com/libooc/search/default?search=';
-    var cb = '&page=1&pagesize=100';
-    var page = 'http://www.libooc.com/libooc/ebook/detail?ebid=';
-    
-
-    $http.get(api + title + cb).success(function(data) {
-      var results=data.indexs;
-      console.log(results);
-      var i=1;
-      angular.forEach(results,function(v,k){
-        $scope.results.push({
-          id:i++,
-          title:v.title,
-          author:v.author,
-          buy:"Buy",
-          page:page+v.e_id
-        })
-      })
-    });
-  }
+var input = $('input');
+input.keyup(function(){
+	search();
 });
+ function search () {  
+  	var title = input.val();
+    var api = 'http://www.libooc.com/libooc/search/default';
+    var page = 'book.html?ebid=';
+    // http://www.libooc.com/jfinal_demo/libookndex
+         var url = api;
+         $.ajax({  
+             url: url,  
+             type: 'GET',  
+             dataType: 'json', 
+             data:{
+             	search:title,
+             	page:1,
+             	pagesize:100
+             }, 
+             timeout: 1000,  
+             cache: false,  
+             beforeSend: LoadFunction, //加载执行方法    
+             error: erryFunction,  //错误执行方法    
+             success: succFunction //成功执行方法    
+         })  
+         function LoadFunction() {  
+             $("#list").html('Loading...');  
+         }  
+         function erryFunction() {  
+             alert("Please input a book title");  
+         }  
+         function succFunction(result) {  
+             $("#list").html('');  
+             var json = eval(result.indexs); //数组  
+             var str=$("#list").html();
+             
+             $.each(json, function (index, item) {  
+             	str=str+"<a href='"+page+json[index].e_id+"' target='_blank'><li class='bookRow'><div class='row'><div class='col-md-12'><span class='bookId'>#";
+             	str=str+(index+1)+"</span><h1 class='bookTitle'>";
+             	str=str+json[index].title+"</h1><p class='bookAuthor'>";
+             	str=str+json[index].author+"</p><p class='buyUrl'>Buy</p>"
+             	$("#list").html(str);
+             });  
+         }  
+     }; 
   </script>
 </body>
 </html>
