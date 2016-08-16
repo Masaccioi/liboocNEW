@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Libook--the largest ebook library</title>
+  <title>Libooc--the largest ebook library</title>
   <meta charset="utf-8">
+  <link rel="shortcut icon" href="images/logo.png"/>
   <link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-  <link href='https://fonts.googleapis.com/css?family=Dancing+Script' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Coiny' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
   <link rel="stylesheet" type="text/css" href="css/style.css">
@@ -12,12 +13,12 @@
 <body class="bg container-fluid">
 	<div class="content">
 		<div class="header">
-			<h1 class="title">Libook</h1>
+			<h1 class="title">Libooc</h1>
 			<p class="text-muted fz-me help">The largest ebook library.</p>
 			<form >
 				<div class="search">
 					<input type="text" class="form-control searchField" placeholder="please input">  
-					<button type="submit" class="btn searchBtn">
+					<button type="submit" class="btn searchBtn" id="btn">
 						<i class="fa fa-2x fa-search searchicon"></i>
 					</button>
 				</div>
@@ -28,12 +29,25 @@
 	</div>
   <script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
    <script type="text/javascript">
-var input = $('input');
-input.keyup(function(){
-	search();
-});
+$(function(){
+
+	var input = $('input');
+	// var btn=document.getElementById("btn");
+	// btn.submit(function(){search();});
+document.onkeydown=keyDownSearch; 
+function keyDownSearch(e) {  
+        // 兼容FF和IE和Opera  
+        var theEvent = e || window.event;  
+        var code = theEvent.keyCode || theEvent.which || theEvent.charCode;  
+        if (code == 13) {   
+            search();//具体处理函数  
+            return false;  
+        }  
+        return true;  
+    } 
+
  function search () {  
-  	var title = input.val();
+ 	var title = input.val();
     var api = 'http://www.libooc.com/libooc/search/default';
     var page = 'book.html?ebid=';
     // http://www.libooc.com/jfinal_demo/libookndex
@@ -73,6 +87,8 @@ input.keyup(function(){
              });  
          }  
      }; 
+
+ })
   </script>
 </body>
 </html>
