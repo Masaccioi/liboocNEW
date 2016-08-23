@@ -4,16 +4,25 @@
 	<title>Libook--book content</title>
 	<meta charset="utf-8">
     <link rel="shortcut icon" href="images/logo.png">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Coiny' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" type="text/css" href="css/style.css">
+    <link href='http://fonts.googleapis.com/css?family=Coiny' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 	<style type="text/css">
+    .all{
+        width: 100%;
+        height: 800px;
+        background:url(images/bg.jpg);
+        -moz-background-size:cover;
+        -ms-background-size:cover;
+        -webkit-background-size:cover;
+        background-size:cover;
+    }
 		.container{
 			width: 80%;
-			background-color: #f6f8f8;
 			margin: 0 auto;
-            height: 600px;
+            background-color: #f6f8f8;
+            height: 633px;
             position: absolute;
             left: 10%; 
     		top: 7em;
@@ -30,7 +39,7 @@
 		}
         .bookImg{
         	padding: 0.4em 1em 0em 0em;
-        	border-right: 2px solid #86cd50;
+        	
         }
         .bookDown{
         	background-color: #86cd50;
@@ -39,6 +48,7 @@
         	padding: 0.2em;
         }
         .bookContent{
+            border-left: 2px solid #86cd50;
        	 	padding: 0em 1em 1em 1.5em;
        	 	line-height: 2em;
         }
@@ -50,9 +60,8 @@
 	</style>
 </head>
 <body>
-	<div>
+	<div class="all">
 		<a href="index.html"><h1 class="title">Libook</h1></a>
-		<img src="images/bg.jpg"  style="width: 100%;opacity: 0.7;">	
 		<div class="container">
 	      	 <ul id="list">
 	         </ul>
@@ -79,29 +88,43 @@
          function LoadFunction() {  
              $("#list").html('加载中...');  
          }  
-         function erryFunction() {  
-             alert("error");  
-         }  
+         function erryFunction (XMLHttpRequest,textStatus,errorThrown){
+             alert(XMLHttpRequest.status+":"+errorThrown);  
+         }   
          function succFunction(result) {  
-             $("#list").html('');  
+             $("#list").html(''); 
+             console.log(result.errorcode); 
              var json = eval(result); //数组  
-             $.each(json, function (index, item) {  
-                 //循环获取数据    
-                 var title=json[index].title;
-                 var author = json[index].author;  
-                 var page=json[index].page;
-                 var size=json[index].size;
-                 var img=json[index].imgurl;
-                 var language=json[index].language;
-                 var publisher=json[index].publisher;
-                 var topic=json[index].topic;
-                 var extension=json[index].extension;
-                 var edition=json[index].edition;
-                 var year=json[index].year;
-                 var volume=json[index].volume;
+             console.log(json);
+             if (result.errorcode=="001") {
+                $("#list").html($("#list").html+"<div class='row'><div class='col-md-12'>ERROR_EBID_NOT_NUM<br>Can't find this book</div></div>");
+             }else if (result.errorcode=="002") {
+                $("#list").html($("#list").html+"<div class='row'><div class='col-md-12'>ERROR_EBID_NULL<br>The book has disappearred</div></div>");
+             }
+             else{
+                 var title=result.delegato.title;
+                  if (title.length>60) {
+                     title=title.slice(0,60);
+                     title+="...";
+                  }
+				 var isbn = result.delegato.isbn;
+                 var author = result.delegato.author;  
+                 var page=result.delegato.page;
+                 var size=result.delegato.size;
+                 var lengths=size.length;
+                 var sizeone=size.charAt(lengths-1);
+                 var size=parseFloat(size).toFixed(2)+sizeone;
+                 var img=result.delegato.imgurl;
+                 var language=result.delegato.language;
+                 var publisher=result.delegato.publisher;
+                 var topic=result.delegato.topic;
+                 var extension=result.delegato.extension;
+                 var edition=result.delegato.edition;
+                 var year=result.delegato.year;
+                 var volume=result.delegato.volume;
                  $("#list").html($("#list").html() +"<div class='row'><div class='col-md-4'><img class='img-responsive bookImg' src='"+img+"'></div>"+
-                    "<div class='col-md-8 bookContent'><p class='bookTitle'>"+title+"</p><p>"+author+"</p><button class='bookDown btn btn-success'>Buy("+extension+")</button><p>Category:"+topic+"</p><p>language:"+language+"</p><p>edition:"+edition+"</p><p>year:"+year+"</p><p>page:"+page+"</p><p>size:"+size.toFixed(2)+"</p><p>publisher:"+publisher+"</p><p>volume:"+volume+"</p></div></div>");  
-             });  
+                    "<div class='col-md-8 bookContent'><p class='bookTitle'>"+title+"</p><p>"+author+"</p><a href='https://item.taobao.com/item.htm?id=531834676979'><button class='bookDown btn btn-success'>Buy("+extension+")</button></a><p>类别:"+topic+"</p><p>语言:"+language+"</p><p>版本:"+edition+"</p><p>出版日期:"+year+"</p><p>页数:"+page+"</p><p>大小:"+size+"</p><p>出版社:"+publisher+"</p><p>系列:"+volume+"</p><p>isbn:"+isbn+"</p></div></div>");
+             }
          }  
      });  
   </script>
