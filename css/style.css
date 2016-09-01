@@ -31,13 +31,16 @@
   }
   .small{   margin-top: -5em;}
  .search{
-    width: 80%;
+    width: 85%;
     margin: 0 auto;
     padding-top: 2em;
   }
 
 .searchField{
-  	width: 91%;
+    display: inline-block;
+
+
+    width: 91%;
   	height: 4em;
   	line-height: 4em;
   	padding-left: 2em;

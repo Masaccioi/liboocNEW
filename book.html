@@ -3,130 +3,161 @@
 <head>
 	<title>Libook--book content</title>
 	<meta charset="utf-8">
-    <link rel="shortcut icon" href="images/logo.png">
-    <link href='http://fonts.googleapis.com/css?family=Coiny' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<link rel="shortcut icon" href="images/logo.png">
+	<link href='http://fonts.googleapis.com/css?family=Coiny' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	<style type="text/css">
-    .all{
-        width: 100%;
-        height: 800px;
-        background:url(images/bg.jpg);
-        -moz-background-size:cover;
-        -ms-background-size:cover;
-        -webkit-background-size:cover;
-        background-size:cover;
-    }
+		body{
+			background-color: #eee;
+		}
+		.all{
+			width: 100%;
+			height: 800px;
+			background:url(images/bg.jpg);
+			-moz-background-size:cover;
+			-ms-background-size:cover;
+			-webkit-background-size:cover;
+			background-size:cover;
+		}
 		.container{
 			width: 80%;
 			margin: 0 auto;
-            background-color: #f6f8f8;
-            height: 633px;
-            position: absolute;
-            left: 10%; 
-    		top: 7em;
-    		padding: 1em 1em;
-		    font-size: 1.4em;
-		    font-family: 'Open Sans', sans-serif;
+			background-color: #f6f8f8;
+			position: absolute;
+			left: 10%;
+			top: 7em;
+			padding: 1em 1em;
+			font-size: 1.4em;
+			font-family: 'Open Sans', sans-serif;
 		}
 		.title{
 			position: absolute;
 			top: -0.6em;
 			left: 40%;
-		    color: #fff;
-		    z-index: 100;
+			color: #fff;
+			z-index: 100;
 		}
-        .bookImg{
-        	padding: 0.4em 1em 0em 0em;
-        	
-        }
-        .bookDown{
-        	background-color: #86cd50;
-        	border: none;
-        	margin: 1.8em 0em 1em 0em;
-        	padding: 0.2em;
-        }
-        .bookContent{
-            border-left: 2px solid #86cd50;
-       	 	padding: 0em 1em 1em 1.5em;
-       	 	line-height: 2em;
-        }
-        .bookTitle{
-        	font-size: 1.8em;
-    		line-height: 2em;
-        	color: #86cd50;
-        }
+		.bookImg{
+			padding: 0.4em 1em 0em 0em;
+
+		}
+		.bookDown{
+			background-color: #86cd50;
+			border: none;
+			margin: 1.8em 0em 1em 0em;
+			padding: 0.8em;
+		}
+		.bookContent{
+			border-left: 2px solid #86cd50;
+			padding: 0em 1em 1em 1.5em;
+			line-height: 2em;
+		}
+		.bookTitle{
+			font-size: 1.8em;
+			line-height: 2em;
+			color: #86cd50;
+		}
 	</style>
 </head>
 <body>
-	<div class="all">
-		<a href="index.html"><h1 class="title">Libook</h1></a>
-		<div class="container">
-	      	 <ul id="list">
-	         </ul>
-        </div>
-    </div>  
-     <script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
-	<script type="text/javascript">
-      $(function () {  
-         var url = window.location.href;
-         var api="http://www.libooc.com/libooc/ebook/detail?ebid=";
-         var param=url.split('?');
-         param=param[1].split("=");
-         url=api+param[1];
-         $.ajax({  
-             url: url,  
-             type: 'GET',  
-             dataType: 'json',  
-             // timeout: 10000,  
-             cache: false,  
-             beforeSend: LoadFunction, //加载执行方法    
-             error: erryFunction,  //错误执行方法    
-             success: succFunction //成功执行方法    
-         })  
-         function LoadFunction() {  
-             $("#list").html('加载中...');  
-         }  
-         function erryFunction (XMLHttpRequest,textStatus,errorThrown){
-             alert(XMLHttpRequest.status+":"+errorThrown);  
-         }   
-         function succFunction(result) {  
-             $("#list").html(''); 
-             console.log(result.errorcode); 
-             var json = eval(result); //数组  
-             console.log(json);
-             if (result.errorcode=="001") {
-                $("#list").html($("#list").html+"<div class='row'><div class='col-md-12'>ERROR_EBID_NOT_NUM<br>Can't find this book</div></div>");
-             }else if (result.errorcode=="002") {
-                $("#list").html($("#list").html+"<div class='row'><div class='col-md-12'>ERROR_EBID_NULL<br>The book has disappearred</div></div>");
-             }
-             else{
-                 var title=result.delegato.title;
-                  if (title.length>60) {
-                     title=title.slice(0,60);
-                     title+="...";
-                  }
-				 var isbn = result.delegato.isbn;
-                 var author = result.delegato.author;  
-                 var page=result.delegato.page;
-                 var size=result.delegato.size;
-                 var lengths=size.length;
-                 var sizeone=size.charAt(lengths-1);
-                 var size=parseFloat(size).toFixed(2)+sizeone;
-                 var img=result.delegato.imgurl;
-                 var language=result.delegato.language;
-                 var publisher=result.delegato.publisher;
-                 var topic=result.delegato.topic;
-                 var extension=result.delegato.extension;
-                 var edition=result.delegato.edition;
-                 var year=result.delegato.year;
-                 var volume=result.delegato.volume;
-                 $("#list").html($("#list").html() +"<div class='row'><div class='col-md-4'><img class='img-responsive bookImg' src='"+img+"'></div>"+
-                    "<div class='col-md-8 bookContent'><p class='bookTitle'>"+title+"</p><p>"+author+"</p><a href='https://item.taobao.com/item.htm?id=531834676979'><button class='bookDown btn btn-success'>Buy("+extension+")</button></a><p>类别:"+topic+"</p><p>语言:"+language+"</p><p>版本:"+edition+"</p><p>出版日期:"+year+"</p><p>页数:"+page+"</p><p>大小:"+size+"</p><p>出版社:"+publisher+"</p><p>系列:"+volume+"</p><p>isbn:"+isbn+"</p></div></div>");
-             }
-         }  
-     });  
-  </script>
+<div class="">
+	<a href="index.html"><h1 class="title">Libook</h1></a>
+	<div class="container">
+		<ul id="list">
+		</ul>
+	</div>
+</div><script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
+<script type="text/javascript">
+	$(function () {
+		var url = window.location.href;
+		var api="http://www.libooc.com/libooc/ebook/detail?ebid=";
+		var param=url.split('?');
+		param=param[1].split("=");
+		url=api+param[1];
+		$.ajax({
+			url: url,
+			type: 'GET',
+			dataType: 'json',
+			// timeout: 10000,
+			cache: false,
+			beforeSend: LoadFunction, //加载执行方法
+			error: erryFunction,  //错误执行方法
+			success: succFunction //成功执行方法
+		})
+
+
+		function LoadFunction() {
+			$("#list").html('加载中...');
+		}
+		function erryFunction (XMLHttpRequest,textStatus,errorThrown){
+			alert(XMLHttpRequest.status+":"+errorThrown);
+		}
+		function succFunction(result) {
+			$("#list").html('');
+			console.log(result.errorcode);
+			var json = eval(result); //数组
+			console.log(json);
+			if (result.errorcode=="001") {
+				$("#list").html($("#list").html+"<div class='row'><div class='col-md-12'>ERROR_EBID_NOT_NUM<br>Can't find this book</div></div>");
+			}else if (result.errorcode=="002") {
+				$("#list").html($("#list").html+"<div class='row'><div class='col-md-12'>ERROR_EBID_NULL<br>The book has disappearred</div></div>");
+			}
+			else{
+				var title=result.delegato.title;
+				if (title.length>60) {
+					title=title.slice(0,60);
+					title+="...";
+				}
+				var isbn = result.delegato.isbn;
+				var author = result.delegato.author;
+				var page=result.delegato.page;
+				var size=result.delegato.size;
+				var lengths=size.length;
+				var sizeone=size.charAt(lengths-1);
+				var size=parseFloat(size).toFixed(2)+sizeone;
+				var img=result.delegato.imgurl;
+				var language=result.delegato.language;
+				var publisher=result.delegato.publisher;
+				var topic=result.delegato.topic;
+				var extension=result.delegato.extension;
+				var edition=result.delegato.edition;
+				var year=result.delegato.year;
+				var volume=result.delegato.volume;
+				$("#list").html($("#list").html() +"<div class='row'><div class='col-md-4'><img class='img-responsive bookImg' src='"+img+"'></div>"+
+						"<div class='col-md-8 bookContent'><p class='bookTitle'>"+title+"</p><p>"+author
+						+"</p><a onclick=tolink('"+param[1]+"')><button class='bookDown btn btn-success'>GET"
+						+"</button></a><p>文件格式:"+extension+"</p><p>类别:"+topic+"</p><p>语言:"+language+"</p><p>版本:"+edition+"</p><p>出版日期:"+year+"</p><p>页数:"+page+"</p><p>大小:"+size+"</p><p>出版社:"+publisher+"</p><p>系列:"+volume+"</p><p>isbn:"+isbn+"</p></div></div>");
+			}
+		}
+	});
+	function  tolink(ebid) {
+		var url = window.location.href;
+		var api="http://www.libooc.com/libooc/ebook/linkIsFree?ebid=";
+		var param=url.split('?');
+		param=param[1].split("=");
+		url=api+param[1];
+		$.ajax({
+			url: url,
+			type: 'GET',
+			dataType: 'json',
+			// timeout: 10000,
+			cache: false,
+			success: succ //成功执行方法
+		})
+		function succ(result) {
+			if(result.isFree=="true")
+				window.location.href="freelink.html?ebid="+ebid;
+			else{
+				window.location.href="buycode.html?ebid="+ebid;
+
+			}
+		}
+
+
+	}
+
+</script>
 </body>
 </html>
