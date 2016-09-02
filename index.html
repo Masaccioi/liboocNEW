@@ -10,10 +10,11 @@
   <link href='http://fonts.googleapis.com/css?family=Coiny' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
   <!-- <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"> -->
-  <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body class="bg container-fluid">
+
 
 	<div class="content">
 		<div class="header">
@@ -31,10 +32,56 @@
 		<ul class="listView" id="list">
 		</ul>
 		<div class='tcdPageCode'> </div>
+
+		<div class="row text-center">
+			<a href="#" class="btn btn-lg btn-success" data-toggle="modal" data-target="#basicModal" id="traggle">Click to open Modal</a>
+		</div>
+
+
 	</div>
+	<div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel" >Tip:</h4>
+				</div>
+				<div class="modal-body" >
+					<h3>libooc是为了学术自由而生。我们本着共享资源的原则，希望每个人都能平等的获得优质的知识。<br>
+						为了杜绝一些自私的人利用本站进行再淘宝上售卖电子书的的行为已于2015年3月正式停止了会员服务每人每天仅可免费下载1本书，部分书籍需要捐赠1元，<br>
+						我们将所得款用于升级服务器，获取更多的电子书资源。提供在线预览
+						Libooc电子书平台需要大家的支持。</h3>
+				</div>
+				<div class="modal-footer">
+					<input type="checkbox" id ="isshowcheck" class="btn btn-primary">不再提醒</input>
+					<button type="button" id ="isshow" class="btn btn-default" data-dismiss="modal">关闭</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
   <script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
   <script type="text/javascript" src="js/jquery.page.js"></script>
-  <script type="text/javascript">
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/jquery.cookie.js"></script>
+
+	<script type="text/javascript">
+		$("#traggle").hide();
+		if(	!$.cookie('ishiddentip'))
+	{
+		$("#traggle").click();
+	}
+
+	  $("#isshow").bind("click",function () {
+ 		  if($("#isshowcheck").is(":checked"))
+		  {
+			  $.cookie('ishiddentip', 'true', { expires: 2 });
+
+		  }
+	  })
 var input = $('input');
 var title ='';
 var url = 'http://www.libooc.com/libooc/search/default';
@@ -141,9 +188,9 @@ function pageFunction(max){
 		})
 }
 //分页的ajax成功的调用方法
-function Pagesucc(result) { 
-	$("#list").html('');  
-	var json = eval(result.indexs); //数组  
+function Pagesucc(result) {
+	$("#list").html('');
+	var json = eval(result.indexs); //数组
 	var str=$("#list").html();
 	if (json.length==0) {
 		str='';
@@ -152,14 +199,14 @@ function Pagesucc(result) {
 	}
 	else{
 		str='';
-		$.each(json, function (index, item) {  
+		$.each(json, function (index, item) {
 			str=str+"<a href='"+pageID+json[index].e_id+"' target='_blank'><li class='bookRow'><div class='row'><div class='col-md-12'><span class='bookId'>#";
 			str=str+(index+1)+"</span><h1 class='bookTitle'>";
 			str=str+json[index].title+"</h1><p class='bookAuthor'>";
 			str=str+json[index].author+"</p><a href='https://item.taobao.com/item.htm?id=531834676979'><p class='buyUrl'>Buy</a></p></a>";
 			$("#list").html(str);
-		}); 
-	}  
+		});
+	}
 }
 
   </script>
