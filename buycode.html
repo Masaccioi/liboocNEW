@@ -16,7 +16,7 @@
 	<![endif]-->
 
 	<!-- Fav and touch icons -->
-	<link rel="shortcut icon" href="http://www.bootcss.com/p/layoutit/img/favicon.png">
+	<link rel="shortcut icon" href="images/logo.png">
 
 
 <!-- Bootstrap核心CSS文件 -->
@@ -99,7 +99,7 @@
 
 
 			</form>
-			<input  class="btn btn-info" type="button" value="预览" />
+			<input  class="btn btn-info" type="button" id="preview"  value="预览" />
 			<input  type="button"  class="btn btn-large btn-block btn-primary"  value="立即购买兑书码"/>
 			<input  type="button"  class="btn btn-large btn-block btn-primary"  value="淘宝购买兑书码"/>
 		</div>
@@ -160,6 +160,13 @@
 </div>
 	<script type="text/javascript">
 
+		$("#preview").bind("click",function () {
+			 
+			var url = window.location.href;
+			var ebid=url.split("ebid")[1];
+			window.location.href="web/viewer.html?ebid="+ebid;
+
+		})
 		  function getlink(){
 			  var email = document.getElementById("email");
 			  var emailvalue = email.value;

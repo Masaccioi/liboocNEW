@@ -1,109 +1,121 @@
-
-*{
+  *{
     font-family: 'Open Sans', sans-serif;
     padding: 0px;
     margin: 0px;
     box-sizing: border-box;
-}
-a:hover{
+    font-size: 16px;
+  }
+  a:hover{
     text-decoration: none;
-}
-ul li{
+  }
+  ul li{
     list-style: none;
-}
-/* 颜色*/
-.bg{
-    background-color:#fff;
-}
-
-.navbar-default{
+  }
+ body{
     background-color: #fff;
-    border-color: #fff;
+ }
+ .navbar-default{
+     background-color: #fff;
+     border-color: #fff;
+     height: 72px;
+ }
+ header{
+    text-align: center;
+    margin-top: 6em;
+  }
+  .navbar-inc{
+    box-shadow: 0 5px 10px rgba(0,0,0,0.08);
+  }
+  .title{
+    font-family: 'Coiny', cursive, sans-serif !important;
+    font-size: 7em !important;
+    color:#86CD50 !important;
+  }
+  header small{
+     color: #737373;
+  }
+  .nav-title{
+      margin-left: 16em;
+      margin-top: 0.7em;
+  }
+  nav ul li a{
+    font-family: 'Lato', sans-serif !important;
+    color: #333 !important;
+    font-size: 14px;
+  }
+  section{
+    text-align: center;
+  }
+  section .searchForm{
+    margin-top: 20px;
+  }
+  section input{
+    width: 53%;
+    height: 3em;
+    line-height: 3em;
+    padding-left: 3%;
+    border: 1px solid #ccc;
+  }
+  section .searchBtn{
+    display: inline;
+    background-color: #86cd50;
+    padding: 0.8em 1em;
+    margin-left: -4px;
+  }
+
+ .searchBtn:before,.searchBtn:after{
+ 	background-color: #86cd50; 
+ }
+.searchBtn:hover,.searchicon:hover{
+  background-color:#05a24d;
+  color: #fff;
 }
 
 .content{
-    width: 63%;
-    margin:0 auto;
-    margin-top:8%;
-}
-.header{
-    text-align: center;
-    margin-bottom: 2em;
-}
-.title{
-    font-family: 'Coiny', cursive, sans-serif;
-    font-size: 7em;
-    color:#86cd50;
-}
-.smallTitle{letter-spacing:0.3em;}
-.search{
-    width: 80%;
+    width: 60%;
     margin: 0 auto;
-    padding-top: 2em;
-}
-
-.searchField{
-    display: inline-block;
-    width: 91%;
-    height: 4em;
-    line-height: 4em;
-    padding-left: 2em;
-    border:1px solid #ccc;
-}
-.searchBtn{
-    display: inline-block;
-    position: absolute;
-    border: none;
-    background-color: #86cd50;
-}
-.searchicon{
-    padding:0.3em 0.3em;
-    font-weight: 400;
-}
-.searchBtn:before,.searchBtn:after{
-    background-color: #86cd50;
-}
-.searchBtn:hover,.searchicon:hover{
-    background-color:#05a24d;
-    color: #fff;
+    min-width: 600px;
 }
 .bookRow{
     background-color: #f6f8f8;
     margin: 0.5em 0em;
-    padding: 1.6em 1.6em 1.2em 5em;
-    font-size: 1.1em;
-    color: #414a4e;
+    padding: 0.6em 1.6em 0.2em 2em;
 }
 .bookRow:hover{
-    border-left: 4px solid #95d669;
+  border-left: 4px solid #95d669;
 }
-ul li:hover h1, ul li:hover span {
-    color: #95d669;
-}
+ ul li:hover h1, ul li:hover span {
+        color: #95d669; 
+ }
 .bookId{
-    position: absolute;
+  position: absolute;
     left: -1.6em;
     top: 0.7em;
     font-size: 1.4em;
     color: #27b1b5;
 }
 .bookTitle{
-    font-size: 1.4em;
-    font-weight: bolder;
+  font-size: 1.4em;
     color: #27b1b5;
 }
 .buyUrl:hover{
-    color: #95d669;
-    cursor: pointer;
+  color: #95d669;
+  cursor: pointer;
+}
+
+#traggle{
+    float: left;
+    background: #eee;
+    padding: 1em;
 }
 
 /*分页样式*/
-a:hover{ text-decoration:none;}
-.tcdPageCode{padding: 15px 20px;text-align: left;color: #ccc;}
-.tcdPageCode a{display: inline-block;color: #428bca;display: inline-block;height: 25px; line-height: 25px; padding: 0 10px;border: 1px solid #ddd; margin: 0 2px;border-radius: 4px;vertical-align: middle;}
-.tcdPageCode a:hover{text-decoration: none;border: 1px solid #428bca;}
-.tcdPageCode span.current{display: inline-block;height: 25px;line-height: 25px;padding: 0 10px;margin: 0 2px;color: #fff;background-color: #428bca; border: 1px solid #428bca;border-radius: 4px;vertical-align: middle;}
-.tcdPageCode span.disabled{ display: inline-block;height: 25px;line-height: 25px;padding: 0 10px;margin: 0 2px; color: #bfbfbf;background: #f2f2f2;border: 1px solid #bfbfbf;border-radius: 4px;vertical-align: middle;}
+a:hover{ text-decoration:none;} 
+.tcdPageCode{padding: 15px 20px;text-align: left;color: #ccc;} 
+.tcdPageCode a{display: inline-block;color: #428bca;display: inline-block;height: 25px; line-height: 25px; padding: 0 10px;border: 1px solid #ddd; margin: 0 2px;border-radius: 4px;vertical-align: middle;} 
+.tcdPageCode a:hover{text-decoration: none;border: 1px solid #428bca;} 
+.tcdPageCode span.current{display: inline-block;height: 25px;line-height: 25px;padding: 0 10px;margin: 0 2px;color: #fff;background-color: #428bca; border: 1px solid #428bca;border-radius: 4px;vertical-align: middle;} 
+.tcdPageCode span.disabled{ display: inline-block;height: 25px;line-height: 25px;padding: 0 10px;margin: 0 2px; color: #bfbfbf;background: #f2f2f2;border: 1px solid #bfbfbf;border-radius: 4px;vertical-align: middle;} 
 
 /*查询不到结果*/
 .help{
@@ -113,34 +125,9 @@ a:hover{ text-decoration:none;}
     font-size: 1.5em;
 }
 
-/*联系我们  q&a*/
-.nav li{
-    font-size: 1.5em;
-    font-weight: bold;
-}
-.contentus{background-color: #86cd50;padding:0em 0.8em;}
-.contentus a{color:#111;}
-.contentus:hover{background-color: #05a24d !important;}
-.contentus:hover a{color: #fff !important;}
-.qa{
-    background-color: #0AB799;
-    padding:0em 0.8em;
-}
-.qa a{color: #fff!important;}
-.qa:hover{background-color: #036f72 !important;}
+  @media screen and (max-width: 760px){/* 可视区域小于 850px, 设置更小font-size属性 */
+    
 
-@media screen and (max-width: 760px){/* 可视区域小于 850px, 设置更小font-size属性 */
-    *{font-size: 12pt;}
-    .content{ width: 90%;margin-top:8%;}
-    .title{    font-size: 5.5em;margin-top: 1em;}
-    .smallTitle{letter-spacing: 0em;}
-    .bookRow{padding:0em 2.5em;}
-    .bookId{top: -0.3em;left: -1.2em;}
-    .bookTitle{font-size: 1em;}
-    .search{width: 90%;margin-left: -0.3em;}
-    .searchField{   height: 3em;line-height: 3em;  padding-left:0.4em; }
-    .tcdPageCode{padding: 0;}
-    .fa{ font-size: 1.3em;}
-
-}
-
+  }
+  
+  
