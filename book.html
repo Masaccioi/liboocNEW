@@ -10,27 +10,19 @@
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	<style type="text/css">
 		body{
-			background-color: #eee;
-		}
-		.all{
-			width: 100%;
-			height: 800px;
-			background:url(images/bg.jpg);
-			-moz-background-size:cover;
-			-ms-background-size:cover;
-			-webkit-background-size:cover;
-			background-size:cover;
+			background-color: #f5f5f5;
 		}
 		.container{
 			width: 80%;
 			margin: 0 auto;
-			background-color: #f6f8f8;
+			background-color: #fff;
 			position: absolute;
 			left: 10%;
-			top: 7em;
+			top: 4em;
 			padding: 1em 1em;
 			font-size: 1.4em;
 			font-family: 'Open Sans', sans-serif;
+			box-shadow: 0 0 15px #e6e6e6;
 		}
 		.title{
 			position: absolute;
@@ -62,7 +54,26 @@
 </head>
 <body>
 <div class="">
-	<a href="index.html"><h1 class="title">Libook</h1></a>
+	<nav class="navbar navbar-default navbar-fixed-top navbar-inc">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+							 <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+						</button> 
+					</div>
+					<div class="collapse navbar-collapse nav-title" id="bs-example-navbar-collapse-1">
+						<ul class="nav navbar-nav">
+							<li class="">
+								<a href="#">首页</a>
+							</li>
+							<li class="">
+								<a href="#">会员</a>
+							</li>
+							<li>
+								<a href="#">使用方法</a>
+							</li>
+						</ul>
+					</div>
+				</nav>
 	<div class="container">
 		<ul id="list">
 		</ul>
@@ -124,10 +135,11 @@
 				var edition=result.delegato.edition;
 				var year=result.delegato.year;
 				var volume=result.delegato.volume;
+				if (topic=="null") {topic='';}
 				$("#list").html($("#list").html() +"<div class='row'><div class='col-md-4'><img class='img-responsive bookImg' src='"+img+"'></div>"+
 						"<div class='col-md-8 bookContent'><p class='bookTitle'>"+title+"</p><p>"+author
 						+"</p><a onclick=tolink('"+param[1]+"')><button class='bookDown btn btn-success'>GET"
-						+"</button></a><p>文件格式:"+extension+"</p><p>类别:"+topic+"</p><p>语言:"+language+"</p><p>版本:"+edition+"</p><p>出版日期:"+year+"</p><p>页数:"+page+"</p><p>大小:"+size+"</p><p>出版社:"+publisher+"</p><p>系列:"+volume+"</p><p>isbn:"+isbn+"</p></div></div>");
+						+"</button></a><div class='row'><div class='col-sm-6'><p>文件格式:"+extension+"</p><p>类别:"+topic+"</p><p>语言:"+language+"</p><p>版本:"+edition+"</p><p>出版日期:"+year+"</p></div><div class='col-sm-6'>  <p>页数:"+page+"</p><p>大小:"+size+"</p><p>出版社:"+publisher+"</p><p>系列:"+volume+"</p><p>isbn:"+isbn+"</p></div></div></div></div>");
 			}
 		}
 	});
