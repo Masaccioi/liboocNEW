@@ -11,34 +11,10 @@
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
-	
 </head>
 <body>
 	<div class="container-fluid">
-		<div class="row">
-			<div class="col-md-12">
-				<nav class="navbar navbar-default navbar-fixed-top navbar-inc">
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-							 <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
-						</button> 
-					</div>
-					<div class="collapse navbar-collapse nav-title" id="bs-example-navbar-collapse-1">
-						<ul class="nav navbar-nav">
-							<li class="">
-								<a href="#">首页</a>
-							</li>
-							<li class="">
-								<a href="#">会员</a>
-							</li>
-							<li>
-								<a href="#">使用方法</a>
-							</li>
-						</ul>
-					</div>
-				</nav>
-			</div>
-		</div>
+		<iframe name="nav" width=100% scrolling="no" frameborder="0" marginwidth="0" marginheight="0" src="navigation.html" ></iframe>
 		<header>
 			<div class="row">
 				<div class="col-sm-4"></div>
@@ -48,6 +24,14 @@
 				</div>
 			</div>
 		</header>
+		<div class="tip">
+	      	<p class="tipName" id="tip">Tip</p>
+	      	<span class="tipText"> 本站已于2016年3月停止了会员服务。<br>
+		  每人每天仅可下载1本书，<br>
+		  如有更多的需求，每本需捐赠1元，<br>
+		  我们将所得款用于升级服务器，获取更多的电子书资源等。<br>
+		  Libooc电子书平台需要大家的支持。</span>
+	    </div>
 		<section>
 			<div class="row">
 				<div class="col-sm-2"></div>
@@ -67,9 +51,7 @@
 			<ul class="listView" id="list"></ul>
 		    <div class='tcdPageCode'> </div> 
 		</div>
-		<div class="row text-center">
-	      	<span href="#" class="" data-toggle="modal" data-target="#basicModal" id="traggle">Tip</span>
-	    </div>
+	    <span href="#" class="" data-toggle="modal" data-target="#basicModal" id="traggle" hidden>Cookie</span>
 		<div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
 		  <div class="modal-dialog">
 		    <div class="modal-content">
@@ -94,12 +76,11 @@
     <script type="text/javascript" src="js/jquery.page.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/search.js"></script>
-    <script type="text/javascript" src="js/zhanzhangtongji.js"></script>
     <script type="text/javascript" src="js/jquery.cookie.js"></script>
 
 	<script type="text/javascript">
-    // $("#traggle").hide();
-		if(	!$.cookie('ishiddentip'))
+    
+  if(	!$.cookie('ishiddentip'))
 	{
 		$("#traggle").click();
 	}
@@ -107,11 +88,13 @@
 	  $("#isshow").bind("click",function () {
  		  if($("#NoTip").is(":checked"))
 		  {
-			  $.cookie('ishiddentip', 'true', { expires: 2 });
+			  $.cookie('ishiddentip', 'true', { expires: 30 });
 
 		  }
 	  })
-    
+
+
+	 
   </script>
 </body>
 </html>

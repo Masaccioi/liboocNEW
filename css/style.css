@@ -1,5 +1,5 @@
   *{
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Open Sans','微软雅黑', sans-serif;
     padding: 0px;
     margin: 0px;
     box-sizing: border-box;
@@ -21,13 +21,12 @@
  }
  header{
     text-align: center;
-    margin-top: 6em;
   }
   .navbar-inc{
     box-shadow: 0 5px 10px rgba(0,0,0,0.08);
   }
   .title{
-    font-family: 'Coiny', cursive, sans-serif !important;
+    font-family: 'Coiny',cursive, sans-serif !important;
     font-size: 7em !important;
     color:#86CD50 !important;
   }
@@ -71,6 +70,28 @@
   color: #fff;
 }
 
+  .tipName{
+    background-color: #eee;
+    padding: 1.5em;
+    float: left;
+    position: absolute;
+    border-radius: 17px;
+    font-weight: bolder;
+  }
+  .tip span{
+    height: auto;
+    width: 19em;
+    background-color: #eee;
+    padding: 1em;
+    z-index: 100;
+    position: absolute;
+    margin-left: 5em;
+    margin-top: -2em;
+    display: none;
+  }
+  .tip:hover span{
+    display:block;
+  }
 .content{
     width: 60%;
     margin: 0 auto;

@@ -1,7 +1,7 @@
 var input = $('input');
 var title ='';
 var url = 'http://www.libooc.com/libooc/search/default';
-var pageID = 'book.html?ebid=';
+var pageID = 'templates/book.html?ebid=';
 
 //文本框回车事件
 document.onkeydown=keyDownSearch; 
@@ -73,7 +73,7 @@ function succFunction(result) {
 				    str=str+"<a href='"+pageID+json[index].e_id+"'target='_blank'><li class='bookRow'><div class='row'><div class='col-md-12'>";
 				    str=str+"<h1 class='bookTitle'>";
 				    str=str+json[index].title+"</h1><p class='bookAuthor'>";
-				    str=str+json[index].author+"</p><a href='https://item.taobao.com/item.htm?id=537497008124'><p class='buyUrl'>GET</p></a></div></div></li></a>";
+				    str=str+json[index].author+"</p><a href='templates/freelink.html'><p class='buyUrl'>Download</p></a></div></div></li></a>";
 				    $("#list").html(str);
 			     }); 
 		    }  
